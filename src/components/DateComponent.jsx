@@ -9,6 +9,7 @@ export default function DateComponent({ date, setDate}) {
       <DatePicker value={date}
                 onChange={setDate}
                 
+                
                 />
     </LocalizationProvider>
   );

@@ -41,7 +41,7 @@ export default function Todolist() {
         <div>
             <h1>Todo list</h1>
             
-            <DateComponent date={todo.date} setDate={handleDateChange}  />
+            <DateComponent date={todo.date} setDate={handleDateChange}  label="Date"/>
 
              
              <TextField
