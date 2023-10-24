@@ -13,9 +13,5 @@ function App() {
 export default App;
 
 
-// Tälleenkin voi exporttaa 
-//export default App
 
 
-// Tälleenkin voi exporttaa 
-//export default App

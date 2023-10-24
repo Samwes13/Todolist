@@ -3,11 +3,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 
-const TodolistTable = ({ todos, gridRef, handleDelete }) => {
+const TodolistTable = ({ todos, gridRef }) => {
 
     const columns = [
-        { field: "description", sortable: true, filter: true },
         { field: "date", sortable: true, filter: true },
+        { field: "description", sortable: true, filter: true },
         { field: "priority", sortable: true, filter: true, 
           cellStyle: params => params.value === "High" ? { color: 'red' } : { color: 'black' } }
     ];

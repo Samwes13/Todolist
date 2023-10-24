@@ -1,19 +1,27 @@
 import React, { useState, useRef } from "react";
-import TodoTable from "./TodolistTable";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import TodoTable from "./components/TodolistTable";
+import DateComponent from "./components/DateComponent";
+
+
+
+
 
 export default function Todolist() {
     const [todos, setTodos] = useState([]);
     const [todo, setTodo] = useState({ description: "", date: "", priority: '' });
-    const gridRef = useRef(null); // Lisätty gridRef
+    const gridRef = useRef(null); 
 
     const handleInputChanged = (e) => {
         setTodo({ ...todo, [e.target.name]: e.target.value });
     }
 
+    
     const addTodo = () => {
         setTodos([...todos, todo]);
     }
-
+    
     const handleDelete = () => {
         if (gridRef.current.getSelectedNodes().length > 0) {
             setTodos(todos.filter((todo, index) =>
@@ -23,48 +31,48 @@ export default function Todolist() {
             alert('Select row first');
             }
             };
-  
+   
+    const handleDateChange = (date) => {
+        const formattedDate = (date).format('MM/DD/YYYY');
+                setTodo({ ...todo, date: formattedDate });
+    }
 
     return (
         <div>
             <h1>Todo list</h1>
             
-            <input
-                id="inputdate"
-                type="date"
-                name="date"
-                placeholder="Date"
-                value={todo.date}
-                onChange={handleInputChanged}
-            />
-            
-            <input
+            <DateComponent date={todo.date} setDate={handleDateChange}  />
+
+             
+             <TextField
                 id="inputDescription"
-                placeholder="Task"
-                type="text"
+                label="Description"
+                variant="standard"
                 name="description"
                 value={todo.description}
                 onChange={handleInputChanged}
             />
 
-            <input
+            <TextField
                 id="inputPriority"
-                placeholder="Priority"
-                type="text"
+                label="Priority"
+                variant="standard"
                 name="priority"
                 value={todo.priority}
                 onChange={handleInputChanged}
             />
             
 
-            <button onClick={addTodo}>
+            <Button onClick={addTodo}
+            variant="contained">
                 Add
-            </button>
-            <button onClick={handleDelete}>
+            </Button>
+            <Button onClick={handleDelete}
+            variant="contained" color="error">
                 Delete
-            </button>
+            </Button>
             <TodoTable todos={todos} gridRef={gridRef} />
-          
+        
         </div>
     )
 }
